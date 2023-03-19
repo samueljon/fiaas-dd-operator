@@ -1,0 +1,70 @@
+apiVersion: charts.fiaas.schibsted.io/v1alpha1
+kind: FiaasDeployDaemon
+metadata:
+  name: fiaasdeploydaemon-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/fiaas-deploy-daemon/values.yaml
+  annotations:
+    global: {}
+  configMap:
+    clusterConfig: |-
+      enable-crd-support: true
+      enable-service-account-per-app: true
+      use-networkingv1-ingress: true
+      use-apiextensionsv1-crd: true
+  deployment:
+    annotations: {}
+    labels: {}
+    pod:
+      annotations:
+        prometheus.io/path: /internal-backstage/prometheus
+        prometheus.io/port: "5000"
+        prometheus.io/scrape: "true"
+      labels: {}
+    redeployOnConfigMapChange: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: fiaas/fiaas-deploy-daemon
+    tag: v1.0.2
+  ingress:
+    annotations: {}
+    enabled: false
+    host: chart-example.local
+    labels: {}
+    pathType: ImplementationSpecific
+    tls:
+      enabled: false
+      secretName: chart-example.local
+  labels:
+    global: {}
+  name: fiaas-deploy-daemon
+  rbac:
+    clusterRole:
+      annotations: {}
+      create: true
+      labels: {}
+    clusterRoleBinding:
+      annotations: {}
+      create: true
+      labels: {}
+    role:
+      annotations: {}
+      create: true
+      labels: {}
+    roleBinding:
+      annotations: {}
+      create: true
+      labels: {}
+    serviceAccount:
+      annotations: {}
+      create: true
+      labels: {}
+  resources: {}
+  service:
+    annotations: {}
+    labels: {}
+    port: 5000
+    targetPort: 5000
+    type: ClusterIP
+  
+  

@@ -1,0 +1,27 @@
+# permissions for end users to view fiaasdeploydaemons.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: fiaasdeploydaemon-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: fiaas-dd-operator
+    app.kubernetes.io/part-of: fiaas-dd-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: fiaasdeploydaemon-viewer-role
+rules:
+- apiGroups:
+  - charts.fiaas.schibsted.io
+  resources:
+  - fiaasdeploydaemons
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - charts.fiaas.schibsted.io
+  resources:
+  - fiaasdeploydaemons/status
+  verbs:
+  - get
