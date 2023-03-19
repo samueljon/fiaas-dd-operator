@@ -29,7 +29,8 @@ BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 #
 # For example, running 'make bundle-build bundle-push catalog-build catalog-push' will build and push both
 # fiaas.schibsted.io/fiaas-dd-operator-bundle:$VERSION and fiaas.schibsted.io/fiaas-dd-operator-catalog:$VERSION.
-IMAGE_TAG_BASE ?= fiaas.schibsted.io/fiaas-dd-operator
+#IMAGE_TAG_BASE ?= fiaas.schibsted.io/fiaas-dd-operator
+IMAGE_TAG_BASE ?= ghcr.io/samueljon/fiaas-dd-operator
 
 
 # BUNDLE_IMG defines the image:tag used for the bundle.
@@ -78,13 +79,13 @@ run: helm-operator ## Run against the configured Kubernetes cluster in ~/.kube/c
 
 .PHONY: docker-build
 docker-build: ## Build docker image with the manager.
-	docker build -t ${IMG} .
-	#podman build -t ${IMG} .
+	#docker build -t ${IMG} .
+	podman build -t ${IMG} .
 
 .PHONY: docker-push
 docker-push: ## Push docker image with the manager.
-	docker push ${IMG}
-	#podman push ${IMG}
+	#docker push ${IMG}
+	podman push ${IMG}
 
 # PLATFORMS defines the target platforms for  the manager image be build to provide support to multiple
 # architectures. (i.e. make docker-buildx IMG=myregistry/mypoperator:0.0.1). To use this option you need to:
