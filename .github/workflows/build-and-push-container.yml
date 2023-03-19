@@ -11,9 +11,15 @@
 
 name: Create and publish a Container image
 
+#on:
+#  push:
+#    branches: ['release']
 on:
   push:
-    branches: ['release']
+    tags:
+      - '*'
+    branches:
+      - 'main'
 
 env:
   REGISTRY: ghcr.io
