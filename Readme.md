@@ -5,7 +5,7 @@ This is a proof of concept of using the Operator SDK to create an operator from 
 Initial contents of this operator was created via:
 
 ```shell
-operator-sdk init --plugins=base.helm.sdk.operatorframework.io/v1 \
+operator-sdk init --plugins=helm.sdk.operatorframework.io/v1 \
       --domain=fiaas.schibsted.io \
       --group=charts \
       --version=v1alpha1 \
